@@ -18,13 +18,15 @@ function TodoForm({initialFormData, handleSave}) {
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(fData => ({
-      ...fData, 
+      ...fData,
       [name]: value,
     }));
   }
 
   /** Call parent function and clear form. */
-  function handleSubmit(evt) { }
+  function handleSubmit(evt) {
+    handleSave(formData);
+  }
 
   return (
       <form className="NewTodoForm" onSubmit={handleSubmit}>
@@ -36,7 +38,7 @@ function TodoForm({initialFormData, handleSave}) {
               className="form-control"
               placeholder="Title"
               onChange={handleChange}
-              value="FIXME"
+              value={initialFormData.title}
               aria-label="Title"
           />
         </div>
@@ -48,7 +50,7 @@ function TodoForm({initialFormData, handleSave}) {
               className="form-control"
               placeholder="Description"
               onChange={handleChange}
-              value="FIXME"
+              value={initialFormData.description}
               aria-label="Description"
           />
         </div>
@@ -60,7 +62,7 @@ function TodoForm({initialFormData, handleSave}) {
             </label>
             <select id="newTodo-priority"
                     name="priority"
-                    value="FIXME"
+                    value={initialFormData.priority}
                     onChange={handleChange}
                     className="form-control form-control-sm d-inline-flex"
             >

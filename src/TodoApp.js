@@ -28,6 +28,19 @@ function TodoApp({initialTodos}) {
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
+    for(let todo in todos){
+      if(todos[todo].id === updatedTodo.id){
+        todos[todo] = {
+          id: updatedTodo.id,
+          title: updatedTodo.title,
+          description: updatedTodo.description,
+          priority: updatedTodo.priority
+        }
+        break;
+      }
+    }
+
+    setTodos([...todos]);
   }
 
   /** delete a todo by id */
