@@ -15,10 +15,15 @@ import EditableTodoList from "./EditableTodoList";
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
 
-function TodoApp() {
+function TodoApp({initialTodos}) {
+
+  const [todos, setTodos] = useState(initialTodos);
 
   /** add a new todo to list */
   function create(newTodo) {
+    //new array identity, spread todos and add newTodo
+    const newTodoList = []
+    //use setter to update todos state
   }
 
   /** update a todo with updatedTodo */

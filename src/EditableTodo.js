@@ -8,27 +8,40 @@ import TodoForm from "./TodoForm";
  * - todo
  * - update(): fn to call to update a todo
  * - remove(): fn to call to remove a todo
+ * 
+ * State
+ * - isEditing: bool, tracks whether a todo is currently being edited
+ *     and will render form to do update 
  *
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
-function EditableTodo() {
+function EditableTodo({todo, update, remove}) {
+
+  const [isEditing, setIsEditing] = useState(false);
 
   /** Toggle if this is being edited */
-  function toggleEdit() { }
+  function toggleEdit() {
+    const status = isEditing ? false : true; 
+    setIsEditing(status);
+  }
 
   /** Call remove fn passed to this. */
-  function handleDelete() { }
+  function handleDelete(todo) { 
+    remove(todo.id);
+  }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
-  function handleSave(formData) { }
+  function handleSave(formData) {
+    update()
+  }
 
   return (
       <div className="EditableTodo">
 
                 EITHER
 
-                <TodoForm />
+                <TodoForm todo={todo} handleSave={update}/>
 
                 OR
 
