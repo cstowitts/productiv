@@ -15,7 +15,11 @@ function EditableTodoList({todos, update, remove}) {
   return (
       <div className="EditableTodoList">
         {todos.map(todo =>
-          <EditableTodo key={todo.id} todo={todo} update={update} remove={remove}/>)
+          <EditableTodo 
+            key={todo.id} 
+            todo={todo} 
+            update={update} 
+            remove={remove}/>)
         }
       </div>
   );

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 /** Form for adding.
  *
  * Props:
@@ -10,22 +9,33 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm({initialFormData, handleSave}) {
+const defaultTodoFormData = {
+  title: "",
+  description: "",
+  priority: 1,
+}
+
+function TodoForm({initialFormData=defaultTodoFormData, handleSave}) {
 
   const [formData, setFormData] = useState(initialFormData);
 
   /** Update form input. */
   function handleChange(evt) {
-    const { name, value } = evt.target;
+    //functional idiom
+    const input = evt.target;
     setFormData(fData => ({
       ...fData,
-      [name]: value,
+      [input.name]: input.value,
     }));
   }
 
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
+    //don't forget to prevent the default page refresh behavior on submit!
+    evt.preventDefault();
     handleSave(formData);
+    //and don't forget to clear the form after adding the new todo
+    setFormData(initialFormData);
   }
 
   return (
